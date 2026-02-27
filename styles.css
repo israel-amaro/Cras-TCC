@@ -295,21 +295,24 @@ body {
 
 /* ================== HERO SECTION ================== */
 .hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%),
-              url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: white;
-  padding: 100px 40px;
   position: relative;
   overflow: hidden;
-}
+  padding: 100px 40px;
+  color: white;
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 61, 130, 0.85);
+  background:
+    linear-gradient(to right,
+      rgba(38, 65, 143, 1) 0%,     /* Cor sólida no início */
+      rgba(38, 65, 143, 0.9) 30%,   /* Começa a esfumaçar suavemente */
+      rgba(38, 65, 143, 0.6) 55%,   /* Meio transparente */
+      rgba(38, 65, 143, 0.2) 80%,   /* Quase invisível */
+      rgba(38, 65, 143, 0) 100%     /* Totalmente transparente, mantendo a mesma cor base */
+    ),
+    url('imagens/teste.jpg');
+
+  background-size: 80% auto; /* ESSENCIAL: Faz a imagem preencher todo o fundo sob o gradiente */
+  background-position: right 15%; /* Centraliza a parte direita da imagem */
+  background-repeat: no-repeat;
 }
 
 .hero-content {
