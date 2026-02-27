@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Consultar Agendamento</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="header-principal">
+  <div class="container-fluid header-content">
+    <nav class="nav-principal">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="sobre.html" class="nav-link">Sobre</a>
+      <a href="servicos.html" class="nav-link">Serviços</a>
+      <a href="agendamento.html" class="nav-link">Agendamento</a>
+      <a href="consulta.html" class="nav-link active">Consultar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="servicos">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2>Consultar Agendamento</h2>
+    </div>
+
+    <div style="max-width:500px;margin:0 auto;">
+      <input type="text" id="consultaCpf" placeholder="Digite seu CPF">
+      <button class="btn btn-primary btn-block" onclick="consultarAgendamento()">
+        Consultar
+      </button>
+      <div id="resultadoConsulta" style="margin-top:20px;"></div>
+    </div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>

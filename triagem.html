@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Triagem Socioeconômica - CRAS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="header-principal">
+  <div class="container-fluid header-content">
+    <nav class="nav-principal">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="sobre.html" class="nav-link">Sobre</a>
+      <a href="servicos.html" class="nav-link">Serviços</a>
+      <a href="triagem.html" class="nav-link active">Triagem</a>
+      <a href="agendamento.html" class="nav-link">Agendamento</a>
+      <a href="consulta.html" class="nav-link">Consultar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="agendamento">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2>Triagem Socioeconômica</h2>
+      <p>Preencha os dados abaixo para verificar elegibilidade</p>
+    </div>
+
+    <div class="form-agendamento" style="max-width:600px;margin:0 auto;">
+      <form id="formTriagem">
+
+        <div class="form-group">
+          <label>Renda Familiar Total (R$)</label>
+          <input type="number" id="renda" required>
+        </div>
+
+        <div class="form-group">
+          <label>Número de Pessoas na Família</label>
+          <input type="number" id="membros" required>
+        </div>
+
+        <div class="form-group">
+          <label>Possui Cadastro Único?</label>
+          <select id="cadunico" required>
+            <option value="">Selecione</option>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Verificar Elegibilidade
+        </button>
+
+      </form>
+
+      <div id="resultadoTriagem" style="margin-top:20px;"></div>
+
+    </div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
