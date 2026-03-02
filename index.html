@@ -12,12 +12,14 @@
 <header class="header-principal">
   <div class="container-fluid header-content">
     <div class="logo-section">
-      <div class="logo"><i class="fas fa-hands-helping"></i></div>
-      <div class="logo-text">
-        <h1>CRAS</h1>
-        <p>Centro de Referência de Assistência Social</p>
-      </div>
-    </div>
+  <div class="logo">
+    <img src="imagens/logo.jpg" alt="Logo CRAS" class="logo-img">
+  </div>
+  <div class="logo-text">
+    <h1>CRAS</h1>
+    <p>Centro de Referência de Assistência Social</p>
+  </div>
+</div>
 
     <nav class="nav-principal">
   <a href="index.html" class="nav-link">Início</a>
@@ -30,18 +32,101 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="container-fluid hero-content">
-    <h2>Bem-vindo ao CRAS</h2>
-    <p>Assistência Social para Famílias em Vulnerabilidade</p>
-    <div class="hero-buttons">
-      <a href="agendamento.html" class="btn btn-primary btn-lg">
-        <i class="fas fa-calendar-check"></i> Agendar Atendimento
-      </a>
-      <a href="sobre.html" class="btn btn-secondary btn-lg">
-        <i class="fas fa-info-circle"></i> Saiba Mais
-      </a>
+<section class="hero-slider-container">
+  
+  <div class="hero-slide active" style="background-image: url('imagens/teste.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="container-fluid hero-content">
+      <span class="badge-noticia">Destaque</span>
+      <h2>Bem-vindo ao CRAS</h2>
+      <p>Assistência Social para Famílias em Vulnerabilidade</p>
+      <div class="hero-buttons">
+        <a href="agendamento.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-calendar-check"></i> Agendar Atendimento
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide" style="background-image: url('imagens/senainews.jpg'); background-color: #1a5490;"> <div class="hero-overlay"></div>
+    <div class="container-fluid hero-content">
+      <span class="badge-noticia">Novidade</span>
+      <h2>Abertura de Novas Vagas para Cursos Profissionalizantes</h2>
+      <p>Qualifique-se para o mercado de trabalho com os novos cursos gratuitos do SENAI em parceria com o CRAS.</p>
+      <div class="hero-buttons">
+        <a href="noticia1.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-book-open"></i> Ler Notícia Completa
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide" style="background-image: url('imagens/cadunico.jpg'); background-color: #003d82;"> <div class="hero-overlay"></div>
+    <div class="container-fluid hero-content">
+      <span class="badge-noticia">Aviso Importante</span>
+      <h2>Atualização do Cadastro Único 2026</h2>
+      <p>Evite o bloqueio dos seus benefícios. Veja quem precisa atualizar os dados presencialmente neste semestre.</p>
+      <div class="hero-buttons">
+        <a href="noticia2.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-info-circle"></i> Saiba Mais
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-indicators">
+    <div class="dot active" onclick="mudarSlide(0)"></div>
+    <div class="dot" onclick="mudarSlide(1)"></div>
+    <div class="dot" onclick="mudarSlide(2)"></div>
+  </div>
+
+</section>
+
+<section class="destaques">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2>Em Destaque</h2>
+      <p>Acesse rapidamente as novidades e serviços essenciais.</p>
+    </div>
+    
+    <div class="carrossel-container">
+      <button class="btn-nav prev" id="btnPrev"><i class="fas fa-chevron-left"></i></button>
+      
+      <div class="carrossel-wrapper">
+        <div class="carrossel-track" id="track">
+          
+          <div class="cartao-carrossel">
+            <div class="cartao-icone"><i class="fas fa-newspaper"></i></div>
+            <h3>Últimas Notícias</h3>
+            <p>Acompanhe os novos programas sociais e atualizações do CRAS da sua região.</p>
+            <a href="#" class="btn btn-primary btn-block">Ver Notícias</a>
+          </div>
+
+          <div class="cartao-carrossel">
+            <div class="cartao-icone"><i class="fas fa-clipboard-list"></i></div>
+            <h3>Realize Triagem</h3>
+            <p>Faça sua avaliação inicial online para direcionarmos você ao setor correto.</p>
+            <a href="triagem.html" class="btn btn-primary btn-block">Iniciar Triagem</a>
+          </div>
+
+          <div class="cartao-carrossel">
+            <div class="cartao-icone"><i class="fas fa-calendar-alt"></i></div>
+            <h3>Agendamentos</h3>
+            <p>Marque o dia e horário para o seu atendimento presencial.</p>
+            <a href="agendamento.html" class="btn btn-primary btn-block">Agendar Agora</a>
+          </div>
+
+          <div class="cartao-carrossel">
+            <div class="cartao-icone"><i class="fas fa-info-circle"></i></div>
+            <h3>Dúvidas Frequentes</h3>
+            <p>Encontre respostas rápidas sobre o Cadastro Único e benefícios.</p>
+            <a href="sobre.html" class="btn btn-secondary btn-block" style="border-color: var(--primary); color: var(--primary);">Ler FAQ</a>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="btn-nav next" id="btnNext"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </section>

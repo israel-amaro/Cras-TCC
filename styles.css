@@ -129,16 +129,23 @@ body {
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color: white;
+  width: 60px;          /* Mantém a largura que você tinha antes */
+  height: 60px;         /* Mantém a altura */
+  border-radius: 12px;  /* Mantém as bordas arredondadas */
+  box-shadow: var(--shadow); /* Mantém a sombrinha charmosa */
+  overflow: hidden;     /* Não deixa a foto vazar das bordas arredondadas */
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  font-size: 28px;
-  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Preenche o espaço sem esticar/amassar a foto */
+  display: block;
 }
 
 .logo-text h1 {
@@ -294,45 +301,95 @@ body {
 }
 
 /* ================== HERO SECTION ================== */
-.hero {
+/* ================== HERO SLIDER (BANNER PRINCIPAL) ================== */
+.hero-slider-container {
   position: relative;
+  width: 100%;
+  height: 85vh; /* Ocupa 85% da altura da tela */
+  min-height: 500px;
   overflow: hidden;
-  padding: 100px 40px;
-  color: white;
+  background-color: var(--primary); /* Cor de fundo caso a imagem demore a carregar */
+}
 
-  background:
-    linear-gradient(to right,
-      rgba(38, 65, 143, 1) 0%,     /* Cor sólida no início */
-      rgba(38, 65, 143, 0.9) 30%,   /* Começa a esfumaçar suavemente */
-      rgba(38, 65, 143, 0.6) 55%,   /* Meio transparente */
-      rgba(38, 65, 143, 0.2) 80%,   /* Quase invisível */
-      rgba(38, 65, 143, 0) 100%     /* Totalmente transparente, mantendo a mesma cor base */
-    ),
-    url('imagens/teste.jpg');
-
-  background-size: 80% auto; /* ESSENCIAL: Faz a imagem preencher todo o fundo sob o gradiente */
-  background-position: right 15%; /* Centraliza a parte direita da imagem */
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center right;
   background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Esta é a mágica do Fade (transição suave) */
+  display: flex;
+  align-items: center;
+  z-index: 1;
 }
 
-.hero-content {
-  position: relative;
+/* O slide ativo fica visível e por cima */
+.hero-slide.active {
+  opacity: 1;
   z-index: 2;
-  max-width: 600px;
 }
 
-.hero h2 {
+/* Mantendo o seu degradê azul elegante por cima das imagens */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right,
+      rgba(38, 65, 143, 1) 0%, 
+      rgba(38, 65, 143, 0.9) 30%, 
+      rgba(38, 65, 143, 0.6) 60%, 
+      rgba(38, 65, 143, 0.1) 100% 
+    );
+  z-index: 3;
+}
+
+.hero-slide .hero-content {
+  position: relative;
+  z-index: 4; /* Fica acima do degradê */
+  max-width: 800px;
+  margin-left: 0; /* Alinhado à esquerda como na sua imagem original */
+  color: white;
+  padding: 0 40px;
+  transform: translateY(20px);
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.hero-slide.active .hero-content {
+  transform: translateY(0);
+}
+
+.badge-noticia {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-slider-container h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 15px;
   line-height: 1.2;
 }
 
-.hero p {
+.hero-slider-container p {
   font-size: 20px;
   margin-bottom: 30px;
   line-height: 1.5;
   opacity: 0.95;
+  max-width: 600px;
 }
 
 .hero-buttons {
@@ -341,25 +398,52 @@ body {
   flex-wrap: wrap;
 }
 
+/* Bolinhas de navegação do Slider */
+.hero-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: var(--accent); /* Fica dourado quando ativo */
+  transform: scale(1.3);
+}
+
+/* Responsividade do Hero Slider */
 @media (max-width: 768px) {
-  .hero {
-    padding: 60px 20px;
+  .hero-slider-container h2 {
+    font-size: 32px;
   }
-  
-  .hero h2 {
-    font-size: 36px;
-  }
-  
-  .hero p {
+  .hero-slider-container p {
     font-size: 16px;
   }
-  
-  .hero-buttons {
-    flex-direction: column;
+  .hero-slide .hero-content {
+    padding: 0 20px;
+    text-align: center;
+    margin: 0 auto;
   }
-  
-  .btn-lg {
-    width: 100%;
+  .hero-overlay {
+    background: linear-gradient(to bottom,
+      rgba(38, 65, 143, 0.8) 0%, 
+      rgba(38, 65, 143, 1) 100% 
+    );
+  }
+  .hero-buttons {
+    justify-content: center;
   }
 }
 
@@ -785,4 +869,115 @@ body {
 /* ================== UTILITÁRIOS ================== */
 .active {
   border-color: var(--primary);
+}
+
+/* ================== CARROSSEL DE DESTAQUES ================== */
+.destaques {
+  padding: 80px 40px;
+  background-color: var(--bg-light);
+}
+
+.carrossel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 15px;
+}
+
+.carrossel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px; /* Limita a largura máxima para não esticar muito em telas gigantes */
+}
+
+.carrossel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  gap: 20px;
+}
+
+.cartao-carrossel {
+  background-color: var(--bg-white);
+  border-radius: 12px;
+  padding: 30px 20px;
+  /* Calcula a largura para mostrar 3 cartões, descontando o gap de 20px */
+  min-width: calc(33.333% - 13.5px); 
+  box-shadow: var(--shadow);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cartao-carrossel:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cartao-icone {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0, 61, 130, 0.1); /* Fundo sutil baseado na sua cor primária */
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cartao-carrossel h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.cartao-carrossel p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 25px;
+  flex-grow: 1; /* Empurra o botão sempre para o final do cartão */
+}
+
+.btn-nav {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.btn-nav:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Responsividade do Carrossel */
+@media (max-width: 992px) {
+  .cartao-carrossel {
+    min-width: calc(50% - 10px); /* 2 cartões no tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .cartao-carrossel {
+    min-width: 100%; /* 1 cartão no celular */
+  }
+  .destaques {
+    padding: 40px 20px;
+  }
 }

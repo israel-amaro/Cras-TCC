@@ -239,3 +239,125 @@ if (formTriagem) {
     `;
   });
 }
+
+// ================== CARROSSEL DE DESTAQUES ==================
+  const track = document.getElementById('track');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+
+  if (track && btnPrev && btnNext) {
+    let indiceAtual = 0;
+
+    function atualizarCarrossel() {
+      const cartoes = document.querySelectorAll('.cartao-carrossel');
+      if (cartoes.length === 0) return;
+
+      const totalCartoes = cartoes.length;
+      
+      // Determina quantos cartões aparecem dependendo da tela (baseado no CSS)
+      let cartoesVisiveis = 3;
+      if (window.innerWidth <= 768) {
+        cartoesVisiveis = 1;
+      } else if (window.innerWidth <= 992) {
+        cartoesVisiveis = 2;
+      }
+
+      // Evita rolar para o nada
+      if (indiceAtual < 0) indiceAtual = 0;
+      if (indiceAtual > totalCartoes - cartoesVisiveis) {
+        indiceAtual = totalCartoes - cartoesVisiveis;
+      }
+
+      // Pega a largura exata do cartão renderizado na tela + o gap (20px)
+      const cardWidth = cartoes[0].offsetWidth;
+      const gap = 20; 
+      const deslocamento = -(indiceAtual * (cardWidth + gap));
+      
+      track.style.transform = `translateX(${deslocamento}px)`;
+    }
+
+    btnPrev.addEventListener('click', () => {
+      indiceAtual--;
+      atualizarCarrossel();
+    });
+
+    btnNext.addEventListener('click', () => {
+      indiceAtual++;
+      atualizarCarrossel();
+    });
+
+    // Recalcula a posição se o usuário virar o celular ou redimensionar a tela
+    window.addEventListener('resize', () => {
+      indiceAtual = 0; // Reseta para o início ao redimensionar para evitar bugs visuais
+      atualizarCarrossel();
+    });
+    
+    // Suporte a deslizar o dedo no celular (Swipe)
+    let touchstartX = 0;
+    let touchendX = 0;
+    
+    track.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    track.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      if (touchstartX - touchendX > 50) { // Deslizou para a esquerda
+        indiceAtual++; 
+        atualizarCarrossel();
+      }
+      if (touchendX - touchstartX > 50) { // Deslizou para a direita
+        indiceAtual--; 
+        atualizarCarrossel();
+      }
+    }, {passive: true});
+  }
+
+  // ================== BANNER ROTATIVO (HERO SLIDER) ==================
+let slideIndex = 0;
+let timerSlider;
+
+function inicializarSlider() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.dot');
+  
+  if(slides.length === 0) return; // Se não tiver slider na página, ignora
+
+  function mostrarSlide(n) {
+    slides.forEach(slide => {
+      slide.classList.remove('active');
+    });
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    slideIndex = n;
+    
+    // Se passar do limite, volta pro zero
+    if (slideIndex >= slides.length) slideIndex = 0;
+    // Se for menor que zero, vai pro último
+    if (slideIndex < 0) slideIndex = slides.length - 1;
+
+    slides[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+  }
+
+  // Função que o HTML chama quando clica na bolinha
+  window.mudarSlide = function(n) {
+    clearInterval(timerSlider); // Para o automático quando o usuário clica
+    mostrarSlide(n);
+    iniciarRotacaoAutomatica(); // Volta a rodar automático depois de clicar
+  };
+
+  function iniciarRotacaoAutomatica() {
+    timerSlider = setInterval(() => {
+      mostrarSlide(slideIndex + 1);
+    }, 6000); // Troca a cada 6 segundos (6000 milissegundos)
+  }
+
+  // Começa o slider
+  iniciarRotacaoAutomatica();
+}
+
+// Inicia assim que a página carregar
+document.addEventListener('DOMContentLoaded', inicializarSlider);
