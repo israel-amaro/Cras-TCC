@@ -1000,3 +1000,116 @@ body {
     padding: 40px 20px;
   }
 }
+/* ================== PÁGINA DE NOTÍCIA INTERNA ================== */
+.noticia-interna {
+  padding: 40px 20px 80px;
+  background-color: var(--bg-light);
+}
+
+.noticia-interna .container-fluid {
+  max-width: 800px; /* Deixa o texto mais estreito para facilitar a leitura */
+  background-color: var(--bg-white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.btn-voltar {
+  display: inline-block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.btn-voltar:hover {
+  color: var(--primary);
+}
+
+.noticia-header h1 {
+  color: var(--primary);
+  font-size: 32px;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+.noticia-meta {
+  display: flex;
+  gap: 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.noticia-imagem-destaque {
+  width: 100%;
+  height: 350px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+}
+
+.noticia-corpo {
+  color: var(--text-dark);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.noticia-lead {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 25px;
+}
+
+.noticia-corpo h2 {
+  color: var(--primary);
+  font-size: 24px;
+  margin: 30px 0 15px;
+}
+
+.noticia-corpo p {
+  margin-bottom: 20px;
+}
+
+.noticia-box-info {
+  background-color: rgba(0, 61, 130, 0.05);
+  border-left: 4px solid var(--accent);
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 25px 0;
+}
+
+.noticia-box-info ul {
+  list-style: none;
+}
+
+.noticia-box-info li {
+  margin-bottom: 10px;
+}
+
+.noticia-acoes {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .noticia-interna .container-fluid {
+    padding: 20px;
+  }
+  .noticia-header h1 {
+    font-size: 24px;
+  }
+  .noticia-imagem-destaque {
+    height: 200px;
+  }
+}
