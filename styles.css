@@ -115,10 +115,9 @@ body {
 }
 
 .header-content {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 40px;
 }
 
 .logo-section {
@@ -126,6 +125,7 @@ body {
   align-items: center;
   gap: 15px;
   flex-shrink: 0;
+  margin-left: 20px;
 }
 
 .logo {
@@ -163,12 +163,17 @@ body {
 
 /* ================== NAVEGAÇÃO PRINCIPAL ================== */
 .nav-principal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 5px;
   align-items: center;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.nav-principal {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .nav-link {
@@ -820,9 +825,12 @@ body {
     font-size: 12px;
   }
   
-  .logo-section {
-    gap: 10px;
-  }
+ .logo-section {
+  margin-left: 100px;
+}
+.logo-section {
+  grid-column: 1;
+}
   
   .logo {
     width: 50px;
@@ -833,10 +841,21 @@ body {
   .logo-text h1 {
     font-size: 18px;
   }
+  .header-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
   
   .header-actions {
-    gap: 10px;
-  }
+  justify-self: end;
+}
+.header-inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
   
   .hero {
     padding: 50px 20px;
